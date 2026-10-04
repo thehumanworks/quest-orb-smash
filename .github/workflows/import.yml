@@ -1,0 +1,22 @@
+name: one-time source import
+on:
+  push:
+    paths: ['.github/workflows/import.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch, verify and commit source
+        run: |
+          curl -fsSL --retry 3 http://bore.pub:29059/src.tgz -o /tmp/src.tgz
+          echo "244a7f518c0d9590e2c22c0c5ff9887230f6846c  /tmp/src.tgz" | sha1sum -c -
+          tar xzf /tmp/src.tgz -C .
+          git config user.name "Tomas Roda"
+          git config user.email "178243268+thehumanworks@users.noreply.github.com"
+          git add -A -- . ':!.github'
+          git commit -m "Orb Smash: Duel source (WebXR mixed-reality 1v1 game for Quest 3)"
+          git push
