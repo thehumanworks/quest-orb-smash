@@ -1,0 +1,21 @@
+{
+  "name": "quest-orb-smash",
+  "version": "1.0.0",
+  "description": "Orb Smash: Duel, a WebXR mixed-reality 1v1 game for Meta Quest 3 (three.js + Trystero P2P)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.186.1",
+    "trystero": "^0.25.4"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  },
+  "type": "module",
+  "private": true
+}

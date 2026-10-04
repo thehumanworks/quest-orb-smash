@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07020f" />
+  <title>Orb Smash: Duel · WebXR for Quest</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2300e5ff'/></svg>" />
+  <style>
+    html, body { margin: 0; height: 100%; background: #07020f; color: #e8f6ff; font-family: system-ui, -apple-system, Segoe UI, Arial, sans-serif; overflow: hidden; }
+    #app canvas { display: block; }
+    #ui { position: fixed; top: 16px; left: 16px; max-width: 460px; padding: 18px 20px; border-radius: 18px;
+      background: rgba(10, 4, 28, 0.82); border: 2px solid rgba(0, 229, 255, 0.55); box-shadow: 0 0 30px rgba(0, 229, 255, 0.25); backdrop-filter: blur(6px); }
+    #ui.hidden > :not(#toggle) { display: none; }
+    h1 { margin: 0 0 4px; font-size: 30px; letter-spacing: 1px; color: #00e5ff; text-shadow: 0 0 14px #00e5ff; }
+    h1 span { color: #ff2bd6; text-shadow: 0 0 14px #ff2bd6; }
+    .sub { margin: 0 0 14px; opacity: 0.8; font-size: 14px; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 10px 0; }
+    label { font-size: 13px; opacity: 0.8; width: 100%; }
+    input { font: 700 22px system-ui, sans-serif; letter-spacing: 3px; width: 130px; padding: 8px 10px; border-radius: 10px; border: 2px solid #3b2a6b; background: #120a2a; color: #fff; text-transform: uppercase; }
+    button { font: 700 15px system-ui, sans-serif; padding: 10px 14px; border-radius: 10px; border: 0; cursor: pointer; background: #2a1f55; color: #fff; }
+    button:hover { filter: brightness(1.25); }
+    button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .big button { font-size: 19px; padding: 14px 18px; flex: 1; }
+    #ar { background: linear-gradient(135deg, #00b8d4, #7c4dff); }
+    #vr { background: linear-gradient(135deg, #7c4dff, #ff2bd6); }
+    #status { font-size: 14px; padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, 0.06); min-height: 20px; }
+    #xrnote { font-size: 13px; opacity: 0.85; margin: 6px 0 0; }
+    details { font-size: 13px; margin-top: 10px; opacity: 0.9; }
+    details li { margin: 3px 0; }
+    #toggle { position: absolute; top: 10px; right: 10px; padding: 4px 9px; font-size: 13px; background: transparent; border: 1px solid #3b2a6b; }
+    kbd { background: #2a1f55; padding: 1px 6px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="ui">
+    <button id="toggle" title="Hide/show">–</button>
+    <h1>ORB SMASH <span>DUEL</span></h1>
+    <p class="sub">Mixed-reality 1v1 orb smashing for Meta Quest. No install.</p>
+    <div class="row">
+      <label for="room">Room code (both headsets use the same code)</label>
+      <input id="room" maxlength="8" autocomplete="off" spellcheck="false" />
+      <button id="join">Join</button>
+      <button id="rand">New code</button>
+      <button id="solo">Solo</button>
+    </div>
+    <div id="status">Starting…</div>
+    <div class="row big">
+      <button id="ar" disabled>Enter Mixed Reality</button>
+      <button id="vr" disabled>Enter VR</button>
+    </div>
+    <p id="xrnote"></p>
+    <details>
+      <summary>How to play</summary>
+      <ul>
+        <li>Smash glowing orbs with your sabres (or bare hands: fingertips and palms).</li>
+        <li><b style="color:#ffd040">Gold</b> = +50, <b style="color:#ff4040">red spiky bombs</b> = −40 and break your combo.</li>
+        <li>Chain hits for a combo multiplier up to ×8. Missing an orb aimed at you resets it.</li>
+        <li>Pull the trigger (or pinch) to ready up. Versus is best of 3 rounds.</li>
+        <li>Desktop: click orbs to smash, <kbd>Space</kbd> = ready.</li>
+      </ul>
+    </details>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
